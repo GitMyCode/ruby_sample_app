@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.16'
 
+=begin
+gem 'rails', '4.0.4'
+=end
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
@@ -13,7 +16,10 @@ group :test do
   gem 'capybara', '2.1.0'
 end
 
-gem 'sass-rails'
+
+gem 'sass-rails', '~> 3.2.3'
+gem 'bootstrap-sass', '~> 2.0.1'
+gem 'sprockets'
 gem 'uglifier', '2.1.1'
 gem 'coffee-rails'
 gem 'jquery-rails', '3.0.4'

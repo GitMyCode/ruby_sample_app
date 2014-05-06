@@ -1,7 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-
+require 'bootstrap-sass'
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
@@ -58,5 +58,10 @@ module Untitled2
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+
+
+    #Pour permettre a bootstrap d'etre compatible avec le pipeline
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end
