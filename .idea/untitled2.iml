@@ -186,7 +186,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v0.9.9, ruby-1.9.3-p484) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass (v3.3.7, ruby-1.9.3-p484) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass-rails (v4.0.1, ruby-1.9.3-p484) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sdoc (v0.4.0, ruby-1.9.3-p484) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sdoc (v0.3.20, ruby-1.9.3-p484) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="selenium-webdriver (v2.35.1, ruby-1.9.3-p484) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="slop (v3.5.0, ruby-1.9.3-p484) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v2.11.0, ruby-1.9.3-p484) [gem]" level="application" />
