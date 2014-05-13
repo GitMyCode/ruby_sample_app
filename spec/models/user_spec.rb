@@ -2,6 +2,17 @@ require 'spec_helper'
 
 describe User do
 
+  describe "test creation avec Factory" do
+    before do
+      @user = FactoryGirl.create(:user)
+    end
+
+    it {should be_valid}
+
+  end
+
+
+
   before do
     @user = User.new(name: "Example User", email: "user@example.com",
                      password: "foobar", password_confirmation: "foobar" )
