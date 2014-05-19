@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   #va permettre de rediriger un utilisateur qui ne devrait pas acceder l'action edit ou update
   before_action :signed_in_user, only: [:index , :edit, :update]
   before_action :correct_user , only: [:edit, :update]
+  before_action :admin_user , only: :destroy
 
   def index
     @users = User.paginate(page: params[:page])
@@ -70,4 +71,10 @@ end
     @user = User.find(params[:id])
     redirect_to root_path unless current_user?(@user)
   end
+
+  def admin_user
+    redirect_to root_path unless current_user.admin?
+  end
+
+
 end
