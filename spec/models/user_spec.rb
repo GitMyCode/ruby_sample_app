@@ -139,6 +139,36 @@ describe User do
   end
 
 
+  describe "micropost associations" do
+
+    before {@user.save}
+    let!(:older_micropost) do #le ! est important pour que le micropost soi immediatement enregistrer
+                              # et qu'il ai donc un id avant l'autre
+      FactoryGirl.create(:micropost, user: @user, created_at: 1.year.ago)
+    end
+    let!(:newer_micropost) do
+      FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right mocropost in the right order" do
+      # to_a converti l'objet en array
+      expect(@user.microposts.to_a).to eq [newer_micropost, older_micropost]
+    end
+
+
+    # Test vraiment util pour savoir si les microposts on belle et bien ete effacer
+    # si cascade delete est activer dans le User
+    it "should destroy associated microposts" do
+      microposts = @user.microposts.to_a # le to_a est important puisque sans lui la variable microposts aurait
+                                        # été effacer avec le @user.destroy
+      @user.destroy
+      expect(microposts).not_to be_empty #double check pour etre sur que to_a n'a pas effacer de quoi
+      microposts.each do |micropost|
+        expect(Micropost.where(id: micropost.id)).to be_empty
+      end
+    end
+
+  end
 
 
 
