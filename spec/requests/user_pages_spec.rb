@@ -59,12 +59,13 @@ describe "User pages" do
         let(:admin) {FactoryGirl.create(:admin)}
         let(:user_to_delete) {FactoryGirl.create(:user)}
         before do
+          user_to_delete.save!
           sign_in admin, no_capybara: true
         end
 
         it "should delete a user" do
           expect do
-            delete user_path(4)
+            delete user_path(user_to_delete)
           end.to change(User, :count).by(-1)
         end
 
