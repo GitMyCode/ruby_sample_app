@@ -125,6 +125,24 @@ describe "Authentification" do
 
     end
 
+
+    #le comportement d'un user pas admin
+    # un user non amdin va essayer de delete un user admin
+    describe "as non-admin user" do
+      let (:user) { FactoryGirl.create(:user)}
+      let (:non_admin) { FactoryGirl.create(:user)}
+      before do
+        sign_in non_admin
+      end
+
+      describe "submitting a DELETE request to the user#destroy action " do
+        before { delete user_path(user)}
+        specify { expect(response).to redirect_to(root_url)}
+
+        specify { expect(user).to_not be_nil}
+      end
+    end
+
   end
 
 
