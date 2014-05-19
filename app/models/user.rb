@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 
+  has_many :microposts
   validates_confirmation_of :password
   #attr_accessible :name, :email, :password, :password_confirmation
 
