@@ -20,6 +20,10 @@ module SessionsHelper
     @current_user ||= User.find_by(remember_token: remember_token)
   end
 
+  def current_user?(user)
+    user == current_user
+  end
+
   def signed_in?
     !current_user.nil?
   end
@@ -33,6 +37,19 @@ module SessionsHelper
     cookies.delete(:remember_token)
     self.current_user = nil # optional
 
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    session.delete(:return_to)# si on efface pas les prochaine tentative de connection
+                              # vont rediriger a cette adresse
+  end
+
+  #store l<url dans la variable session accessible par le hask :return_to
+  # mais seulement si la request est un get pour empecher qu'il soit declancher par
+  # un user qui submit une form sans etre logger
+  def store_location
+    session[:return_to] = request.url if request.get?
   end
 
 end
