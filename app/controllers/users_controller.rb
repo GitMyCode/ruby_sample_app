@@ -60,13 +60,6 @@ end
                                  :password_confirmation)
   end
 
-  # si l'utilisateur n'est pas signer alors le rediriger
-  # le notice unless envoi un flash[:notice] = " "
-  def signed_in_user
-    store_location #pour ensuite rediriger l'utilisateur vers la destination qu'il voulait avant
-                   # d'etre rediriger vers la pagne d'authentification
-    redirect_to signin_url, notice: "Please sign in." unless signed_in?
-  end
 
   def correct_user
     @user = User.find(params[:id])

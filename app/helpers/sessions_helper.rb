@@ -42,7 +42,7 @@ module SessionsHelper
   def redirect_back_or(default)
     redirect_to(session[:return_to] || default)
     session.delete(:return_to)# si on efface pas les prochaine tentative de connection
-                              # vont rediriger a cette adresse
+    # vont rediriger a cette adresse
   end
 
   #store l<url dans la variable session accessible par le hask :return_to
@@ -52,4 +52,11 @@ module SessionsHelper
     session[:return_to] = request.url if request.get?
   end
 
+  # si l'utilisateur n'est pas signer alors le rediriger
+  # le notice unless envoi un flash[:notice] = " "
+  def signed_in_user
+    store_location #pour ensuite rediriger l'utilisateur vers la destination qu'il voulait avant
+    # d'etre rediriger vers la pagne d'authentification
+    redirect_to signin_url, notice: "Please sign in." unless signed_in?
+  end
 end
